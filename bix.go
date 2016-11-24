@@ -196,15 +196,15 @@ func newgeneric(fields [][]byte, chromCol int, startCol int, endCol int, zeroBas
 }
 
 func (tbx *Bix) ChunkedReader(r tabix.Record) (io.ReadCloser, error) {
-	chunks, err := tbx.Chunks(r)
+	chunks, err := tbx.Chunks(r.RefName(),r.Start(),r.End())
 	if err == index.ErrNoReference {
 		l := location{r.RefName(), r.Start(), r.End()}
 		if strings.HasPrefix(l.chrom, "chr") {
 			l.chrom = l.chrom[3:]
-			chunks, err = tbx.Chunks(l)
+			chunks, err = tbx.Chunks(l.chrom, l.start, l.end)
 		} else {
 			l.chrom = "chr" + l.chrom
-			chunks, err = tbx.Chunks(l)
+			chunks, err = tbx.Chunks(l.chrom, l.start, l.end)
 		}
 	}
 	if err == index.ErrInvalid {
