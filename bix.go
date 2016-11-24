@@ -15,9 +15,9 @@ import (
 	"github.com/biogo/hts/bgzf"
 	"github.com/biogo/hts/bgzf/index"
 	"github.com/biogo/hts/tabix"
-	"github.com/brentp/irelate/interfaces"
-	"github.com/brentp/irelate/parsers"
-	"github.com/brentp/vcfgo"
+	"github.com/xuyangy/irelate/interfaces"
+	"github.com/xuyangy/irelate/parsers"
+	"github.com/xuyangy/vcfgo"
 )
 
 const (
